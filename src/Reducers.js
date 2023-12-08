@@ -1,18 +1,22 @@
-import {createReducer} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    c:0,
-}
-
-export const customReducer = createReducer(initialState, {
+const customSlice = createSlice({
+  name: "custom",
+  initialState: {
+    c: 0,
+  },
+  reducers: {
     increment: (state) => {
-        state.c = state.c+1;
+      state.c += 1;
     },
     incrementByValue: (state, action) => {
-        state.c = state.c+1;
-        state.c += action.payload;
+      state.c += action.payload;
     },
     decrement: (state) => {
-        state.c = state.c-1;
+      state.c -= 1;
     },
+  },
 });
+
+export const { increment, incrementByValue, decrement } = customSlice.actions;
+export const customReducer = customSlice.reducer;
